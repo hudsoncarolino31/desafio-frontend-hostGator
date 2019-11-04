@@ -42,6 +42,7 @@ $(document).ready(function(){
 			console.log(arrayPrices.recurringInstallment);
 			//createElementTagPricePriceTriennially(currentProductCyclesTriennially);
 			//createElementTagPricePriceeMonthly(currentProductCycleMonthly);
+			createElementTemplate(currentProductName,arrayPrices.discount,arrayPrices.priceFinal,arrayPrices.recurringInstallment,currentProductCycleAnnually)
 		})
 
 
@@ -136,12 +137,12 @@ $(document).ready(function(){
 
 
 	//CRIATE TAG NAME  PRODUCTS
-  	function createElementTemplate(currentProductName){
+  	function createElementTemplate(currentProductName,discount,priceFinal,recurringInstallment,price){
 		const productContainer = document.querySelector('.content-carrossel-product-plans');
-		const tagName = document.createElement('div');
-		
-		tagName.classList = 'item';
-		tagName.innerHTML = '<div class="content-carrossel-product-header">'+
+		const tagItem = document.createElement('div');
+		price = numberToReal(price);
+		tagItem.classList = 'item';
+		tagItem.innerHTML = '<div class="content-carrossel-product-header">'+
 				'<figure>'+
 				'	<img src="img/Grupo_29909.svg">'+
 				'	<figcaption></figcaption>	'+	
@@ -150,19 +151,19 @@ $(document).ready(function(){
 			'</div>'+
 			'<div class="content-carrossel-product-price">'+
 				'<div class="content-product-price-promotional">'+
-				'	<span>R$ 431,64</span>'+
-					'<span><strong>R$ 302,15</strong></span>'+
+				'	<span>'+price+'</span>'+
+					'<span><strong>'+priceFinal+'</strong></span>'+
 					'<span>equivalente a</span>'+
 				'</div>'+
 				'<div class="content-product-price">'+
 					'<span></span>'+
-					'<span>R$ <strong>8,39</strong>/mes*</span>'+
+					'<span>R$ <strong>'+recurringInstallment+'</strong>/mes*</span>'+
 					'<span></span>'+
 				'</div>'+
 				'<a href="#" class="content-link-product">Contrate Agora</a>'+
 				'<div class="content-product-obs">'+
 					'<strong class="before-strong-info">1 ano de Domínio Grátis</strong>'+
-					'<span>economize R$174,48 <strong>40% off</strong></span>'+
+					'<span>economize'+discount+'<strong>40% off</strong></span>'+
 				'</div>'+
 			'</div>		'+
 			'<div class="content-carrossel-product-description">'+
@@ -175,6 +176,6 @@ $(document).ready(function(){
 				'</ul>'+
 			'</div>	'
 
-		productContainer.appendChild(tagName);
+		productContainer.appendChild(tagItem);
 	}
 

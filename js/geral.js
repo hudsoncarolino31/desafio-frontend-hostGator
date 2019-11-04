@@ -1,4 +1,5 @@
 'use strict';
+
 $(document).ready(function(){
 	
 	//REQUEST JASON
@@ -31,18 +32,27 @@ $(document).ready(function(){
 			const currentProductCyclesSemiannually = currentProductCycle.semiannually.priceOrder
 			const currentProductCyclesTriennially  = currentProductCycle.triennially.priceOrder
 			
-			const valueTemplate = 1;
+			const valueTemplate = 3;
 
 			// CRIATE TAG NAME
 			
-		
-			const arrayPrices = createElementTagPricePriceAnnually(currentProductCycleAnnually);
-			console.log(arrayPrices.discount);
-			console.log(arrayPrices.priceFinal);
-			console.log(arrayPrices.recurringInstallment);
-			//createElementTagPricePriceTriennially(currentProductCyclesTriennially);
-			//createElementTagPricePriceeMonthly(currentProductCycleMonthly);
-			createElementTemplate(currentProductName,arrayPrices.discount,arrayPrices.priceFinal,arrayPrices.recurringInstallment,currentProductCycleAnnually)
+			if (valueTemplate == 1){
+				const arrayPrices = createElementTagPricePriceAnnually(currentProductCycleAnnually);
+				
+				//createElementTagPricePriceTriennially(currentProductCyclesTriennially);
+				//createElementTagPricePriceeMonthly(currentProductCycleMonthly);
+				createElementTemplate(currentProductName,arrayPrices.discount,arrayPrices.priceFinal,arrayPrices.recurringInstallment,currentProductCycleAnnually)
+			
+			}else if(valueTemplate == 2){
+				
+				const arrayPricesTriennially = createElementTagPricePriceTriennially(currentProductCyclesTriennially);
+				createElementTemplate(currentProductName,arrayPricesTriennially.discount,arrayPricesTriennially.priceFinal,arrayPricesTriennially.recurringInstallment,currentProductCyclesTriennially)
+			
+			}else if(valueTemplate == 3){
+				
+				const arrayPricesMonthly = createElementTagPricePriceeMonthly(currentProductCycleMonthly);
+				createElementTemplate(currentProductName,arrayPricesMonthly.discount,arrayPricesMonthly.priceFinal,arrayPricesMonthly.recurringInstallment,currentProductCycleMonthly)
+			}
 		})
 
 
@@ -77,7 +87,7 @@ $(document).ready(function(){
 			});
 		});
 
-  	});
+
 
 
   	//CRIATE TAG PRICE ANNUALLY
@@ -94,23 +104,27 @@ $(document).ready(function(){
 	
 	//CRIATE TAG PRICE TRIENNIALLY
   	function createElementTagPricePriceTriennially(currentProductCyclesTriennially){
-		const discount = calculationPercentage(currentProductCyclesTriennially);
-		const priceFinal  = parseFloat(currentProductCyclesTriennially) - parseFloat(discount);
-		
-		console.log("40% "+discount);
-		console.log("Preço Normal "+currentProductCyclesTriennially*3);
-		console.log("Preço final "+priceFinal);
-		console.log("parcela "+priceFinal/36);
+  		const productAtt                           = {};
+		const discount                             = calculationPercentage(currentProductCyclesTriennially);
+		const priceFinal                           = parseFloat(currentProductCyclesTriennially) - parseFloat(discount);
+		productAtt.discount                        = numberToReal(discount);
+		productAtt.currentProductCyclesTriennially = numberToReal(currentProductCyclesTriennially*3);
+		productAtt.priceFinal                      = numberToReal(priceFinal);
+		productAtt.recurringInstallment            = numberToReal(priceFinal/36);
+		return productAtt;
 	}
 
 	//CRIATE TAG PRICE  MONSTHLY
   	function createElementTagPricePriceeMonthly(currentProductCycleMonthly){
+  		const productAtt                           = {};
 		const discount = calculationPercentage(currentProductCycleMonthly);
 		const priceFinal  = parseFloat(currentProductCycleMonthly) - parseFloat(discount);
 		
-		console.log("40% "+ numberToReal(discount));
-		console.log("Preço Normal "+numberToReal(currentProductCycleMonthly));
-		console.log("Preço final "+numberToReal(priceFinal));
+		productAtt.discount                        = numberToReal(discount);
+		productAtt.currentProductCyclesTriennially = numberToReal(currentProductCycleMonthly);
+		productAtt.priceFinal                      = numberToReal(priceFinal);
+		productAtt.recurringInstallment            = 0;
+		return productAtt;
 	}
 
 
@@ -128,19 +142,20 @@ $(document).ready(function(){
 	   return priceNumber.join(',');
 	}
 
-
-	$('.pg-home section.content-products-plans div.legend-products-plans form label').click(function(e){
-	   $(".pg-home section.content-products-plans div.legend-products-plans form label").removeClass("ativo");
-	   $(this).addClass("ativo");
-	});
-
-
-
 	//CRIATE TAG NAME  PRODUCTS
   	function createElementTemplate(currentProductName,discount,priceFinal,recurringInstallment,price){
 		const productContainer = document.querySelector('.content-carrossel-product-plans');
 		const tagItem = document.createElement('div');
 		price = numberToReal(price);
+
+		if (recurringInstallment == 0) {
+			recurringInstallment = price;
+			hideElemente(document.querySelectorAll(".content-product-price-promotional"));
+
+
+		}
+
+
 		tagItem.classList = 'item';
 		tagItem.innerHTML = '<div class="content-carrossel-product-header">'+
 				'<figure>'+
@@ -179,3 +194,16 @@ $(document).ready(function(){
 		productContainer.appendChild(tagItem);
 	}
 
+	function hideElemente(hideElemente){
+		for(var i = 0; i< hideElemente.length;i++){
+			hideElemente[i].style.display = "none";
+		}
+
+	}
+
+	$('.pg-home section.content-products-plans div.legend-products-plans form label').click(function(e){
+	   $(".pg-home section.content-products-plans div.legend-products-plans form label").removeClass("ativo");
+	   $(this).addClass("ativo");
+	});
+
+});

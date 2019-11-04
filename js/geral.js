@@ -32,7 +32,7 @@ $(document).ready(function(){
 			
 
 			// CRIATE TAG NAME
-			//createElementTemplate(currentProduct);
+			createElementTemplate(currentProduct);
 			
 			//createElementTagPricePriceAnnually(currentProductCycleAnnually);
 			//createElementTagPricePriceTriennially(currentProductCyclesTriennially);
@@ -40,33 +40,35 @@ $(document).ready(function(){
 		})
 
 
-		$('.content-carrossel-product-plans').slick({
-		    slidesToShow: 3,
-		    slidesToScroll: 1,
-		    speed: 450,
-		    arrows: false,
-		    draggable:false,
-		    infinite: false,
-		    responsive: [
-		        {
-		        	breakpoint: 800,
-		        	settings: {
-		        		arrows: true,
-		        		slidesToShow: 2,
-		                slidesToScroll: 1,
-		                centerMode: true,
-		        	}
-		        },
-		        {
-		            breakpoint: 400,
-		            settings: {
-		                arrows: false,
-		                slidesToShow: 1,
-		                slidesToScroll: 1,
-		            }
-		        },
-		    ]
-		  });
+		setTimeout(function(){
+			$('.content-carrossel-product-plans').slick({
+			    slidesToShow: 3,
+			    slidesToScroll: 1,
+			    speed: 450,
+			    arrows: false,
+			    draggable:false,
+			    infinite: false,
+			    responsive: [
+			        {
+			        	breakpoint: 800,
+			        	settings: {
+			        		arrows: true,
+			        		slidesToShow: 2,
+			                slidesToScroll: 1,
+			                centerMode: true,
+			        	}
+			        },
+			        {
+			            breakpoint: 400,
+			            settings: {
+			                arrows: false,
+			                slidesToShow: 1,
+			                slidesToScroll: 1,
+			            }
+			        },
+			    ]
+			  });
+			});
 		});
 
   	});
@@ -106,14 +108,6 @@ $(document).ready(function(){
 		console.log("Preço final "+numberToReal(priceFinal));
 	}
 
-	//CRIATE TAG NAME  PRODUCTS
-  	function createElementTemplate(currentProduct){
-		const productContainer = document.querySelector('.content-carrossel-product-plans .slick-track');
-		const tagName = document.createElement('div');
-		tagName.classList = 'content-carrossel-product-name';
-		tagName.innerHTML = currentProduct.name;
-		productContainer.appendChild(tagName);
-	}
 
 	//CALCULARION PERCENTAGE
   	function  calculationPercentage(price){
@@ -134,3 +128,54 @@ $(document).ready(function(){
 	   $(".pg-home section.content-products-plans div.legend-products-plans form label").removeClass("ativo");
 	   $(this).addClass("ativo");
 	});
+
+
+
+	//CRIATE TAG NAME  PRODUCTS
+  	function createElementTemplate(currentProduct){
+		const productContainer = document.querySelector('.content-carrossel-product-plans');
+		const tagName = document.createElement('div');
+		tagName.classList = 'content-carrossel-product-name';
+		tagName.innerHTML = currentProduct.name;
+		
+
+
+		const templateHtml = '<div class="item">'+
+		    '<div class="content-carrossel-product-header">'+
+				'<figure>'+
+				'	<img src="img/Grupo_29909.svg">'+
+				'	<figcaption></figcaption>	'+	
+				'</figure>'+
+				'<h1>Plano P</h1>'+
+			'</div>'+
+			'<div class="content-carrossel-product-price">'+
+				'<div class="content-product-price-promotional">'+
+				'	<span>R$ 431,64</span>'+
+					'<span><strong>R$ 302,15</strong></span>'+
+					'<span>equivalente a</span>'+
+				'</div>'+
+				'<div class="content-product-price">'+
+					'<span></span>'+
+					'<span>R$ <strong>8,39</strong>/mes*</span>'+
+					'<span></span>'+
+				'</div>'+
+				'<a href="#" class="content-link-product">Contrate Agora</a>'+
+				'<div class="content-product-obs">'+
+					'<strong class="before-strong-info">1 ano de Domínio Grátis</strong>'+
+					'<span>economize R$174,48 <strong>40% off</strong></span>'+
+				'</div>'+
+			'</div>		'+
+			'<div class="content-carrossel-product-description">'+
+				'<ul>'+
+					'<li>Para 1 site</li>'+
+					'<li><strong>100 GB</strong> de Armazenamento</li>'+
+					'<li>Contas de E-mail <strong>Ilimitadas</strong></li>'+
+					'<li>Criador de Sites <strong>Grátis</strong></li>'+
+					'<li>Certificado SSL <strong>Grátis</strong>(https)</li>'+
+				'</ul>'+
+			'</div>	'+
+	'</div>'
+
+	productContainer.appendChild(templateHtml);
+	}
+

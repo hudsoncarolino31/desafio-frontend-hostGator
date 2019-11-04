@@ -22,6 +22,7 @@ $(document).ready(function(){
 			const currentProduct                   = products[key];
 			const currentProductCycle         	   = currentProduct.cycle;
 			const currentProductId                 = currentProduct.id;
+			const currentProductName               = currentProduct.name;
 
 			const currentProductCycleAnnually      = currentProductCycle.annually.priceOrder
 			const currentProductCycleBiennially    = currentProductCycle.biennially.priceOrder
@@ -30,13 +31,17 @@ $(document).ready(function(){
 			const currentProductCyclesSemiannually = currentProductCycle.semiannually.priceOrder
 			const currentProductCyclesTriennially  = currentProductCycle.triennially.priceOrder
 			
+			const valueTemplate = 1;
 
 			// CRIATE TAG NAME
-			createElementTemplate(currentProduct);
 			
-			//createElementTagPricePriceAnnually(currentProductCycleAnnually);
+		
+			const arrayPrices = createElementTagPricePriceAnnually(currentProductCycleAnnually);
+			console.log(arrayPrices.discount);
+			console.log(arrayPrices.priceFinal);
+			console.log(arrayPrices.recurringInstallment);
 			//createElementTagPricePriceTriennially(currentProductCyclesTriennially);
-			createElementTagPricePriceeMonthly(currentProductCycleMonthly);
+			//createElementTagPricePriceeMonthly(currentProductCycleMonthly);
 		})
 
 
@@ -76,15 +81,14 @@ $(document).ready(function(){
 
   	//CRIATE TAG PRICE ANNUALLY
   	function createElementTagPricePriceAnnually(currentProductCycleAnnually){
-		const discount = calculationPercentage(currentProductCycleAnnually);
-		const priceFinal  = parseFloat(currentProductCycleAnnually) - parseFloat(discount);
-		
-		console.log("40% "+discount);
-		console.log("Preço Normal "+currentProductCycleAnnually);
-		console.log("Preço final "+priceFinal);
-		console.log("parcela "+priceFinal/12);
-
-		
+  		const productAttr                       = {};
+		const discount                          = calculationPercentage(currentProductCycleAnnually);
+		const priceFinal                        = parseFloat(currentProductCycleAnnually) - parseFloat(discount);
+		productAttr.discount                    = numberToReal(discount);
+		productAttr.currentProductCycleAnnually = numberToReal(currentProductCycleAnnually);
+		productAttr.priceFinal                  = numberToReal(priceFinal);
+		productAttr.recurringInstallment        = numberToReal(priceFinal/12);
+		return productAttr;
 	}
 	
 	//CRIATE TAG PRICE TRIENNIALLY
@@ -132,21 +136,17 @@ $(document).ready(function(){
 
 
 	//CRIATE TAG NAME  PRODUCTS
-  	function createElementTemplate(currentProduct){
+  	function createElementTemplate(currentProductName){
 		const productContainer = document.querySelector('.content-carrossel-product-plans');
 		const tagName = document.createElement('div');
-		tagName.classList = 'content-carrossel-product-name';
-		tagName.innerHTML = currentProduct.name;
 		
-
-
-		const templateHtml = '<div class="item">'+
-		    '<div class="content-carrossel-product-header">'+
+		tagName.classList = 'item';
+		tagName.innerHTML = '<div class="content-carrossel-product-header">'+
 				'<figure>'+
 				'	<img src="img/Grupo_29909.svg">'+
 				'	<figcaption></figcaption>	'+	
 				'</figure>'+
-				'<h1>Plano P</h1>'+
+				'<h1>'+currentProductName+'</h1>'+
 			'</div>'+
 			'<div class="content-carrossel-product-price">'+
 				'<div class="content-product-price-promotional">'+
@@ -173,9 +173,8 @@ $(document).ready(function(){
 					'<li>Criador de Sites <strong>Grátis</strong></li>'+
 					'<li>Certificado SSL <strong>Grátis</strong>(https)</li>'+
 				'</ul>'+
-			'</div>	'+
-	'</div>'
+			'</div>	'
 
-	productContainer.appendChild(templateHtml);
+		productContainer.appendChild(tagName);
 	}
 

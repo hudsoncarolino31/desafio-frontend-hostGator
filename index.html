@@ -22,8 +22,10 @@
 		<!-- CSS -->
 		<link rel="stylesheet" href="css/site.css" />
 
-		<!-- JS -->
-		<script src="js/geral.js"></script>
+		<!-- SLICK SLIDER -->
+		<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+	
+		<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
 
 		<!-- FAVICON -->
 		<!-- <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />  -->
@@ -61,66 +63,75 @@
 			<section class="content-products-plans">
 				
 				<div class="legend-products-plans">
-					<p></p>
-					<ul>
-						<li></li>
-					</ul>
+					<p>Quero pagar a cada:</p>
+					<form>
+						<label for="three-years">
+							<input type="radio" name="pay-date" value="three-years" id="three-years" class="three-years">
+							<p>3 anos</p>
+						</label>
+						<label for="one-years">
+							<input type="radio" name="pay-date" value="one-years" id="one-years" class="one-years">
+							<p>1 ano</p>
+						</label>
+						<label for="one-month">
+							<input type="radio" name="pay-date" value="one-month" id="one-month" class="one-month">
+							<p>1 mês</p>
+						</label>
+					</form>
 				</div>
-
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
 
 				<div class="content-carrossel-product-plans">
+					
 					<div class="item">
-						
 						<div class="content-carrossel-product-header">
 							<figure>
-								<img src="">
+								<img src="img/Grupo_29909.svg">
 								<figcaption></figcaption>		
 							</figure>
-							<h1></h1>
+							<h1>Plano P</h1>
 						</div>
-
 						<div class="content-carrossel-product-price">
-							
 							<div class="content-product-price-promotional">
-								<span></span>
-								<span><strong></strong></span>
-								<span></span>
+								<span>R$ 431,64</span>
+								<span><strong>R$ 302,15</strong></span>
+								<span>equivalente a</span>
 							</div>
-
 							<div class="content-product-price">
 								<span></span>
-								<span><strong></strong></span>
+								<span>R$ <strong>8,39</strong>/mes*</span>
 								<span></span>
 							</div>
-
-							<a href="" class="content-link-product">Contrate Agora</a>
-
+							<a href="#" class="content-link-product">Contrate Agora</a>
 							<div class="content-product-obs">
-								<strong></strong>
-								<span></span>
+								<strong class="before-strong-info">1 ano de Domínio Grátis</strong>
+								<span>economize R$174,48 <strong>40% off</strong></span>
 							</div>
-
 						</div>		
-
 						<div class="content-carrossel-product-description">
 							<ul>
-								<li></li>
-								<li><strong></strong></li>
+								<li>Para 1 site</li>
+								<li><strong>100 GB</strong> de Armazenamento</li>
+								<li>Contas de E-mail <strong>Ilimitadas</strong></li>
+								<li>Criador de Sites <strong>Grátis</strong></li>
+								<li>Certificado SSL <strong>Grátis</strong>(https)</li>
 							</ul>
 						</div>	
-
 					</div>
+				
 				</div>
 
+				<span class="note"><a href="#">*Confira as condições da promoção</a></span>
 			</section>
 
 		</div>
+
+		<!-- SLICK SLIDER -->
+		<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		<script type="text/javascript" src="slick/slick.min.js"></script>
+
+		<!-- JS -->
+		<script src="js/geral.js"></script>
 
 	</body>
 </html>

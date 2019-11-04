@@ -52,6 +52,7 @@ font-family: 'Montserrat', sans-serif;
     body{
       font-family: var(--montserrat);
       overflow-x: hidden;
+      background-color: #f1f6fb;
     }
   /*TOPO*/
     header{
@@ -80,23 +81,42 @@ font-family: 'Montserrat', sans-serif;
         padding-top: 100px;
         height: 280px;
         position: relative;
-      } 
+      }
+        .pg-home section.content-products-title::before{
+          content: '';
+          position: absolute;
+          display: block;
+          width: 40px;
+          height: 40px;
+          background-image: url(../img/Grupo_29390.svg);
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 45px;
+          bottom: -50px;
+          left: 50%;
+          -webkit-transform: translateX(-50%);
+          -moz-transform: translateX(-50%);
+          -ms-transform: translateX(-50%);
+          -o-transform: translateX(-50%);
+          transform: translateX(-50%);
+        }
         .pg-home section.content-products-title:after{
           background-image: url(../img/bg-wave.svg);
           background-color: #f1f4fb;
           content: '';
           position: absolute;
           margin-left: 50%;
-          bottom: -31px;
+          bottom: -32px;
           left: 0;
-          width: 2995px;
-          height: 32px;
+          width: 100%;
+          height: 60px;
           background-repeat: no-repeat;
-          background-position: -70px bottom;
+          background-position: center;
           -webkit-transform: translateX(-50%);
           -ms-transform: translateX(-50%);
           transform: translateX(-50%);
           z-index: -3;
+          background-size: cover;
         } 
         .pg-home section.content-products-title div.content-title{
       
@@ -178,83 +198,282 @@ font-family: 'Montserrat', sans-serif;
             z-index: -2;
           }
       .pg-home section.content-products-plans{
-
+        margin: 140px auto;
+        width: 100%;
+        max-width: 955px;
       }
         .pg-home section.content-products-plans div.legend-products-plans{
-        
-        }   
+          text-align: center;
+        }
           .pg-home section.content-products-plans div.legend-products-plans p{
-        
+            font-size: 14px;
+            color: #1d5297;
           } 
-          .pg-home section.content-products-plans div.legend-products-plans ul{
-      
+          .pg-home section.content-products-plans div.legend-products-plans form{
+            background-color: #fff;
+            display: block;
+            border-radius: 30px;
+            border: 1px solid #4480C5;
+            max-width: 307px;
+            margin: 10px auto 40px;
           }   
-            .pg-home section.content-products-plans div.legend-products-plans ul li{
-      
-            } 
+            .pg-home section.content-products-plans div.legend-products-plans form label{
+              display: inline-block;
+              padding: 10px 19px;
+              /*background-color: #4480c5;*/
+              border-radius: 30px;
+              cursor: pointer;
+            }
+            .pg-home section.content-products-plans div.legend-products-plans form label.ativo{
+              background-color: #4480c5;
+            }
+              .pg-home section.content-products-plans div.legend-products-plans form label input{
+                display: inline-block;
+                visibility: hidden;
+              }
+              .pg-home section.content-products-plans div.legend-products-plans form label p{
+                display: inline-block;
+                color: #4480c5;
+                font-weight: 600;
+                font-size: 15px;
+                position: relative;
+              }
+              .pg-home section.content-products-plans div.legend-products-plans form label p::before{
+                content: '';
+                position: absolute;
+                width: 15px;
+                height: 15px;
+                display: block;
+                border: 1.5px solid #4480c5;
+                border-radius: 100%;
+                top: 50%;
+                left: -24px;
+                -webkit-transform: translateY(-50%);
+                -moz-transform: translateY(-50%);
+                -ms-transform: translateY(-50%);
+                -o-transform: translateY(-50%);
+                transform: translateY(-50%);
+              }
+              .pg-home section.content-products-plans div.legend-products-plans form label p::after{
+                content: '';
+                position: absolute;
+                width: 9px;
+                height: 9.5px;
+                display: none;
+                background-color: #fff;
+                border-radius: 100%;
+                top: 50%;
+                left: -19.7px;
+                -webkit-transform: translateY(-50%);
+                -moz-transform: translateY(-50%);
+                -ms-transform: translateY(-50%);
+                -o-transform: translateY(-50%);
+                transform: translateY(-50%);
+              }
+              .pg-home section.content-products-plans div.legend-products-plans form label input:checked + p::after{
+                display: block;
+              }
+              .pg-home section.content-products-plans div.legend-products-plans form label input:checked + p::before{
+                border: 1.5px solid #fff;
+              }
+              .pg-home section.content-products-plans div.legend-products-plans form label input:checked + p{
+                color: #fff;
+
+              }
+              .pg-home section.content-products-plans div.legend-products-plans form label input:checked{
+                background:#4480c5;
+              }
         .pg-home section.content-products-plans div.content-carrossel-product-plans{
-  
+
         } 
+        .pg-home section.content-products-plans div.content-carrossel-product-plans .slick-track{
+          /*max-width: fit-content;*/
+        }
           .pg-home section.content-products-plans div.content-carrossel-product-plans div.item{
-  
+            border: 1px solid #dfecff;
+            border-radius: 4px;
+            color: #333;
+            max-width: 330px;
+            text-align: center;
+            margin: 20px 4px;
           } 
             .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-header{
-  
+              padding: 22px 0;
             }
               .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-header figure{
   
               }
                 .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-header figure img{
-  
+                  text-align: center;
+                  display: inline-block;
+                  width: 100%;
+                  max-width: 43px;
                 } 
                 .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-header figure figcaption{
   
-                }  
+                }
+              .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-header h1{
+                color: #1d5297;
+              }
             .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price{
-
+              border-top: 1px solid #dfecff;
+              border-bottom: 1px solid #dfecff;
+              padding: 25px 0;
             } 
               .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-product-price-promotional{
 
               } 
                 .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-product-price-promotional span{
 
-                }  
-                .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-product-price-promotional span strong{
+                }
+                .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-product-price-promotional span:nth-child(1){
+                  text-decoration: line-through;
+                }
+                .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-product-price-promotional span:nth-child(3){
+                  display: block;
+                  font-size: 15px;
+                }
+                  .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-product-price-promotional span strong{
 
-                }  
+                  }  
               .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-product-price{
 
               } 
                 .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-product-price span{
-
+                  color: #1d5297;
+                  font-size: 22px;
                 }  
                 .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-product-price span strong{
-
+                  font-size: 37px;
                 }
               .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price a.content-link-product{
-
+                background-color: #4480c5;
+                padding: 10px 50px;
+                text-decoration: none;
+                color: #fff;
+                display: inline-block;
+                border-radius: 25px;
+                font-weight: 600;
+                font-size: 22px;
+                margin: 22px 0;
               }
               .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-product-obs{
 
               }
                 .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-product-obs strong{
-
+                  display: inline-block;
+                  font-size: 15px;
+                }
+                .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-product-obs strong.before-strong-info{
+                  position: relative;
+                  padding-right: 20px;
+                }
+                .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-product-obs strong.before-strong-info::before{
+                  content: '';
+                  position: absolute;
+                  display: block;
+                  top: 50%;
+                  right: 0;
+                  width: 15px;
+                  height: 15px;
+                  background-image: url('../img/Componente_4.svg');
+                  background-position: center;
+                  background-repeat: no-repeat;
+                  background-size: 15px;
+                  -webkit-transform: translateY(-50%);
+                  -moz-transform: translateY(-50%);
+                  -ms-transform: translateY(-50%);
+                  -o-transform: translateY(-50%);
+                  transform: translateY(-50%);
                 }
                 .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-product-obs span{
-
+                  color: #1d5297;
+                  font-size: 15px;
+                  display: block;
                 }
-              .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-carrossel-product-description{
-
-              }
-                .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-carrossel-product-description ul{
-
-                }
-                  .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-carrossel-product-description ul li{
-
+                  .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-product-obs span strong{
+                    display: inline-block;
+                    color: #fff;
+                    background-color: #51c99c;
+                    padding: 3px 12px;
+                    border-radius: 20px;
+                    text-transform: uppercase;
                   }
-                    .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price div.content-carrossel-product-description ul li strong{
+              .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-description{
+                padding: 25px 22px;
+              }
+                .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-description ul{
+                  text-align: left;
+                }
+                  .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-description ul li{
+                    padding: 2px 0;
+                    display: inline-block;
+                    margin: 3px 0;
+                  }
+                  .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-description ul li:nth-child(1), .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-description ul li:nth-child(3){
+                    border-bottom: 1px dashed #9EB8DC;
+                  }
+                    .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-description ul li strong{
 
-                    }                    
+                    }
+          .pg-home section.content-products-plans div.content-carrossel-product-plans div.item.highlighted-plan-item{
+            position: relative;
+          }
+          .pg-home section.content-products-plans div.content-carrossel-product-plans div.item.highlighted-plan-item::before{
+            content: '';
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: #ff6a17;
+            -webkit-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            -o-transform: translateX(-50%);
+            transform: translateX(-50%);
+            z-index: -2;
+            border-radius: 4px;
+          }
+          .pg-home section.content-products-plans div.content-carrossel-product-plans div.item.highlighted-plan-item::after{
+            content: '';
+            position: absolute;
+            bottom: -7px;
+            left: 50%;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: #ff6a17;
+            -webkit-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            -o-transform: translateX(-50%);
+            transform: translateX(-50%);
+            z-index: -2;
+            border-radius: 4px;
+          }
+          .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-header,
+          .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price,
+          .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-description{
+            background-color: #fff;
+          }
+          .pg-home section.content-products-plans div.content-carrossel-product-plans div.item.highlighted-plan-item a.content-link-product{
+            background-color: #ff6a17 !important;
+          }
+          .pg-home section.content-products-plans div.content-carrossel-product-plans div.item,
+          .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price a.content-link-product{
+            outline: none;
+          }
+    .pg-home section.content-products-plans span.note{
+      display: block;
+      text-align: right;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+      .pg-home section.content-products-plans span.note a{
+        color: #4480C5;
+      }
 
                 
   /*ESTILOS GERAIS*/
@@ -270,6 +489,38 @@ font-family: 'Montserrat', sans-serif;
       position: relative;
     }
   /*@MEDIA*/
-    @media(max-width: 1210px){
+    @media(max-width: 768px){
+      .pg-home section.content-products-title div.icons:after{
+        display: none;
+      }
+      .pg-home section.content-products-title div.icons:before{
+        display: none;
+      }
+      .pg-home section.content-products-title div.content-title h2 {
+        font-size: 30px;
+      }
+      .pg-home section.content-products-title div.content-title ul {
+        max-width: 650px;
+      }
+      .pg-home section.content-products-title div.content-title ul li {
+        font-size: 16px;
+      }
+      .pg-home section.content-products-plans {
+        margin: 70px auto;
+        /*max-width: 640px;*/
+      }
+      .pg-home section.content-products-plans span.note {
+        text-align: center;
+      }
+      .pg-home section.content-products-plans div.content-carrossel-product-plans div.item {
+        /*max-width: 288px;*/
+      }
+      .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-price a.content-link-product {
+        font-size: 20px;
+      }
+    }
+    @media(max-width: 320px){
+
+    }
     
    

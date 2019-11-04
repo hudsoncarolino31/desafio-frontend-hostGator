@@ -1,7 +1,6 @@
 'use strict';
-(function (doc, win) {
+$(document).ready(function(){
 	
-
 	//REQUEST JASON
 	function getProducts() {
 		const url = 'https://7ac2b8ab-f3e5-4534-863d-90dd424a6405.mock.pstmn.io/prices'
@@ -32,16 +31,43 @@
 			const currentProductCyclesTriennially  = currentProductCycle.triennially.priceOrder
 			
 
-
-			
-
 			// CRIATE TAG NAME
-			//createElementTagName(currentProduct);
+			//createElementTemplate(currentProduct);
 			
 			//createElementTagPricePriceAnnually(currentProductCycleAnnually);
 			//createElementTagPricePriceTriennially(currentProductCyclesTriennially);
 			createElementTagPricePriceeMonthly(currentProductCycleMonthly);
 		})
+
+
+		$('.content-carrossel-product-plans').slick({
+		    slidesToShow: 3,
+		    slidesToScroll: 1,
+		    speed: 450,
+		    arrows: false,
+		    draggable:false,
+		    infinite: false,
+		    responsive: [
+		        {
+		        	breakpoint: 800,
+		        	settings: {
+		        		arrows: true,
+		        		slidesToShow: 2,
+		                slidesToScroll: 1,
+		                centerMode: true,
+		        	}
+		        },
+		        {
+		            breakpoint: 400,
+		            settings: {
+		                arrows: false,
+		                slidesToShow: 1,
+		                slidesToScroll: 1,
+		            }
+		        },
+		    ]
+		  });
+		});
 
   	});
 
@@ -55,6 +81,8 @@
 		console.log("Preço Normal "+currentProductCycleAnnually);
 		console.log("Preço final "+priceFinal);
 		console.log("parcela "+priceFinal/12);
+
+		
 	}
 	
 	//CRIATE TAG PRICE TRIENNIALLY
@@ -79,8 +107,8 @@
 	}
 
 	//CRIATE TAG NAME  PRODUCTS
-  	function createElementTagName(currentProduct){
-		const productContainer = document.querySelector('.content-carrossel-product-plans');
+  	function createElementTemplate(currentProduct){
+		const productContainer = document.querySelector('.content-carrossel-product-plans .slick-track');
 		const tagName = document.createElement('div');
 		tagName.classList = 'content-carrossel-product-name';
 		tagName.innerHTML = currentProduct.name;
@@ -102,24 +130,7 @@
 	}
 
 
-
-
-
-	
-
-
-
-	
-
-
-	
-
-
-
-
-
-
-	
-
-	
-}(document, window))
+	$('.pg-home section.content-products-plans div.legend-products-plans form label').click(function(e){
+	   $(".pg-home section.content-products-plans div.legend-products-plans form label").removeClass("ativo");
+	   $(this).addClass("ativo");
+	});

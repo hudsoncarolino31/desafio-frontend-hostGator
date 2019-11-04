@@ -32,7 +32,9 @@ $(document).ready(function(){
 			const currentProductCyclesSemiannually = currentProductCycle.semiannually.priceOrder
 			const currentProductCyclesTriennially  = currentProductCycle.triennially.priceOrder
 			
-			const valueTemplate = 3;
+			const valueTemplate = 2;
+
+
 
 			// CRIATE TAG NAME
 			
@@ -147,12 +149,10 @@ $(document).ready(function(){
 		const productContainer = document.querySelector('.content-carrossel-product-plans');
 		const tagItem = document.createElement('div');
 		price = numberToReal(price);
-
+		console.log(recurringInstallment)
 		if (recurringInstallment == 0) {
-			recurringInstallment = price;
 			hideElemente(document.querySelectorAll(".content-product-price-promotional"));
-
-
+			recurringInstallment = price;
 		}
 
 
@@ -195,7 +195,7 @@ $(document).ready(function(){
 	}
 
 	function hideElemente(hideElemente){
-		for(var i = 0; i< hideElemente.length;i++){
+		for(var i = 0; i < hideElemente.length;i++){
 			hideElemente[i].style.display = "none";
 		}
 

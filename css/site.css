@@ -296,6 +296,7 @@ font-family: 'Montserrat', sans-serif;
             max-width: 330px;
             text-align: center;
             margin: 20px 4px;
+            display: inline-block;
           } 
             .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-header{
               padding: 22px 0;

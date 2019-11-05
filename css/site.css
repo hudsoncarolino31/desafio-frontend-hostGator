@@ -497,6 +497,9 @@ font-family: 'Montserrat', sans-serif;
     }
   /*@MEDIA*/
     @media(max-width: 768px){
+      .pg-home section.content-products-title{
+        height: initial;
+      }
       .pg-home section.content-products-title div.icons:after{
         display: none;
       }

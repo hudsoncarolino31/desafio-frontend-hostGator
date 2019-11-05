@@ -72,6 +72,7 @@ $(document).ready(function(){
 			          breakpoint: 640,
 			          settings: {
 			            slidesToShow: 1,
+			            draggable:true,
 			           
 			          }
 			        },
@@ -79,6 +80,7 @@ $(document).ready(function(){
 			          breakpoint: 768,
 			          settings: {
 			            slidesToShow: 2,
+			            draggable:true,
 			           
 			          }
 			        },
@@ -86,6 +88,7 @@ $(document).ready(function(){
 			          breakpoint: 991,
 			          settings: {
 			            slidesToShow: 3,
+			            draggable:true,
 			          }
 			        }
 			      ]

@@ -227,6 +227,9 @@ font-family: 'Montserrat', sans-serif;
             .pg-home section.content-products-plans div.legend-products-plans form label.ativo{
               background-color: #4480c5;
             }
+            .pg-home section.content-products-plans div.legend-products-plans form label.ativo p{
+              color: #fff;
+            }
               .pg-home section.content-products-plans div.legend-products-plans form label input{
                 display: inline-block;
                 visibility: hidden;
@@ -253,6 +256,9 @@ font-family: 'Montserrat', sans-serif;
                 -ms-transform: translateY(-50%);
                 -o-transform: translateY(-50%);
                 transform: translateY(-50%);
+              }
+              .pg-home section.content-products-plans div.legend-products-plans form label.ativo p:before{
+                border-color:#fff;
               }
               .pg-home section.content-products-plans div.legend-products-plans form label p::after{
                 content: '';
@@ -417,10 +423,10 @@ font-family: 'Montserrat', sans-serif;
                     .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-description ul li strong{
 
                     }
-          .pg-home section.content-products-plans div.content-carrossel-product-plans div.item.highlighted-plan-item{
+          .pg-home section.content-products-plans div.content-carrossel-product-plans div.item:hover{
             position: relative;
           }
-          .pg-home section.content-products-plans div.content-carrossel-product-plans div.item.highlighted-plan-item::before{
+          .pg-home section.content-products-plans div.content-carrossel-product-plans div.item:hover::before{
             content: '';
             position: absolute;
             top: -14px;
@@ -437,7 +443,7 @@ font-family: 'Montserrat', sans-serif;
             z-index: -2;
             border-radius: 4px;
           }
-          .pg-home section.content-products-plans div.content-carrossel-product-plans div.item.highlighted-plan-item::after{
+          .pg-home section.content-products-plans div.content-carrossel-product-plans div.item:hover::after{
             content: '';
             position: absolute;
             bottom: -7px;
@@ -459,7 +465,7 @@ font-family: 'Montserrat', sans-serif;
           .pg-home section.content-products-plans div.content-carrossel-product-plans div.item div.content-carrossel-product-description{
             background-color: #fff;
           }
-          .pg-home section.content-products-plans div.content-carrossel-product-plans div.item.highlighted-plan-item a.content-link-product{
+          .pg-home section.content-products-plans div.content-carrossel-product-plans div.item:hover a.content-link-product{
             background-color: #ff6a17 !important;
           }
           .pg-home section.content-products-plans div.content-carrossel-product-plans div.item,

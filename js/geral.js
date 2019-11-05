@@ -1,7 +1,7 @@
 'use strict';
 
 $(document).ready(function(){
-	
+
 	//REQUEST JASON
 	function getProducts() {
 		const url = 'https://7ac2b8ab-f3e5-4534-863d-90dd424a6405.mock.pstmn.io/prices'
@@ -33,36 +33,32 @@ $(document).ready(function(){
 			const currentProductCyclesTriennially  = currentProductCycle.triennially.priceOrder
 			
 		
+			const arrayPricesTriennially = createElementTagPricePriceTriennially(currentProductCyclesTriennially,currentProductName,currentProductId);
+			createElementTemplate(currentProductName,arrayPricesTriennially.discount,arrayPricesTriennially.priceFinal,arrayPricesTriennially.recurringInstallment,currentProductCyclesTriennially,"triennially",currentProductId)
 
+			const arrayPricesMonthly  = createElementTagPricePriceeMonthly(currentProductCycleMonthly,currentProductName,currentProductId);
+
+			const arrayPricesAnnually = createElementTagPricePriceAnnually(currentProductCycleAnnually,currentProductName,currentProductId);
+			
 			$(".pg-home section.content-products-plans div.legend-products-plans form label").click(function(e){
 			 	
-				
-			 	const valueTemplate = $(this).attr("for");
-
-			 	if(valueTemplate == "one-years"){
-			 		
-					const arrayPrices = createElementTagPricePriceAnnually(currentProductCycleAnnually);
-					createElementTemplate(currentProductName,arrayPrices.discount,arrayPrices.priceFinal,arrayPrices.recurringInstallment,currentProductCycleAnnually)
-
-
-				}else if(valueTemplate == "three-years"){
-				
-				const arrayPricesTriennially = createElementTagPricePriceTriennially(currentProductCyclesTriennially);
-				createElementTemplate(currentProductName,arrayPricesTriennially.discount,arrayPricesTriennially.priceFinal,arrayPricesTriennially.recurringInstallment,currentProductCyclesTriennially)
+			 	$(".pg-home section.content-products-plans div.legend-products-plans form label").removeClass("ativo");
+	   			$(this).addClass("ativo");
+			 	
+			 	if ($(this).attr("for") == "three-years"){
+			 		alterTemplate( $(this).attr("for"),arrayPricesTriennially,currentProductName,currentProductId,currentProductCycle);
+			 	}else if($(this).attr("for") == "one-years"){
+					alterTemplate( $(this).attr("for"),arrayPricesAnnually,currentProductName,currentProductId,currentProductCycle);
+			 	}else if($(this).attr("for") == "one-month"){
+					alterTemplate( $(this).attr("for"),arrayPricesMonthly,currentProductName,currentProductId,currentProductCycle);
+			 	}
 			
-				}else if(valueTemplate == "one-month"){
-					
-					const arrayPricesMonthly = createElementTagPricePriceeMonthly(currentProductCycleMonthly);
-					createElementTemplate(currentProductName,arrayPricesMonthly.discount,arrayPricesMonthly.priceFinal,arrayPricesMonthly.recurringInstallment,currentProductCycleMonthly)
-				}
+				
 			});
 
 		})
 
 
-		
-			$( ".pg-home section.content-products-plans div.legend-products-plans form label[for='three-years']" ).trigger( "click" );
-			
 			$('.content-carrossel-product-plans').slick({
 			    slidesToShow: 3,
 			    slidesToScroll: 1,
@@ -71,24 +67,28 @@ $(document).ready(function(){
 			    draggable:false,
 			    infinite: false,
 			    responsive: [
-			        {
-			        	breakpoint: 800,
-			        	settings: {
-			        		arrows: true,
-			        		slidesToShow: 2,
-			                slidesToScroll: 1,
-			                centerMode: true,
-			        	}
+	       
+			       	{
+			          breakpoint: 640,
+			          settings: {
+			            slidesToShow: 1,
+			           
+			          }
 			        },
 			        {
-			            breakpoint: 400,
-			            settings: {
-			                arrows: false,
-			                slidesToShow: 1,
-			                slidesToScroll: 1,
-			            }
+			          breakpoint: 768,
+			          settings: {
+			            slidesToShow: 2,
+			           
+			          }
 			        },
-			    ]
+			        {
+			          breakpoint: 991,
+			          settings: {
+			            slidesToShow: 3,
+			          }
+			        }
+			      ]
 			  });
 	});
 
@@ -96,40 +96,50 @@ $(document).ready(function(){
 
 
   	//CRIATE TAG PRICE ANNUALLY
-  	function createElementTagPricePriceAnnually(currentProductCycleAnnually){
+  	function createElementTagPricePriceAnnually(currentProductCyclePrice,productName,currentProductId){
   		const productAttr                       = {};
-		const discount                          = calculationPercentage(currentProductCycleAnnually);
-		const priceFinal                        = parseFloat(currentProductCycleAnnually) - parseFloat(discount);
+		const discount                          = calculationPercentage(currentProductCyclePrice);
+		const priceFinal                        = parseFloat(currentProductCyclePrice) - parseFloat(discount);
+		productAttr.productName                 = productName;
+		productAttr.currentProductCycle         = "annually";
+		productAttr.currentProductId            = currentProductId;
 		productAttr.discount                    = numberToReal(discount);
-		productAttr.currentProductCycleAnnually = numberToReal(currentProductCycleAnnually);
+		productAttr.currentProductCyclePrice    = numberToReal(currentProductCyclePrice);
 		productAttr.priceFinal                  = numberToReal(priceFinal);
 		productAttr.recurringInstallment        = numberToReal(priceFinal/12);
+		
 		return productAttr;
 	}
 	
 	//CRIATE TAG PRICE TRIENNIALLY
-  	function createElementTagPricePriceTriennially(currentProductCyclesTriennially){
-  		const productAtt                           = {};
-		const discount                             = calculationPercentage(currentProductCyclesTriennially);
-		const priceFinal                           = parseFloat(currentProductCyclesTriennially) - parseFloat(discount);
-		productAtt.discount                        = numberToReal(discount);
-		productAtt.currentProductCyclesTriennially = numberToReal(currentProductCyclesTriennially*3);
-		productAtt.priceFinal                      = numberToReal(priceFinal);
-		productAtt.recurringInstallment            = numberToReal(priceFinal/36);
-		return productAtt;
+  	function createElementTagPricePriceTriennially(currentProductCyclePrice,productName,currentProductId){
+  		const productAttr                           = {};
+		const discount                              = calculationPercentage(currentProductCyclePrice);
+		productAttr.productName                     = productName;
+		productAttr.currentProductCycle             = "triennially";
+		productAttr.currentProductId                = currentProductId;
+		const priceFinal                            = parseFloat(currentProductCyclePrice) - parseFloat(discount);
+		productAttr.discount                        = numberToReal(discount);
+		productAttr.currentProductCyclePrice        = numberToReal(currentProductCyclePrice*3);
+		productAttr.priceFinal                      = numberToReal(priceFinal);
+		productAttr.recurringInstallment            = numberToReal(priceFinal/36);
+		return productAttr;
 	}
 
 	//CRIATE TAG PRICE  MONSTHLY
-  	function createElementTagPricePriceeMonthly(currentProductCycleMonthly){
-  		const productAtt                           = {};
-		const discount = calculationPercentage(currentProductCycleMonthly);
-		const priceFinal  = parseFloat(currentProductCycleMonthly) - parseFloat(discount);
+  	function createElementTagPricePriceeMonthly(currentProductCyclePrice,productName,currentProductId){
+  		const productAttr                           = {};
+		const discount = calculationPercentage(currentProductCyclePrice);
+		const priceFinal  = parseFloat(currentProductCyclePrice) - parseFloat(discount);
 		
-		productAtt.discount                        = numberToReal(discount);
-		productAtt.currentProductCyclesTriennially = numberToReal(currentProductCycleMonthly);
-		productAtt.priceFinal                      = numberToReal(priceFinal);
-		productAtt.recurringInstallment            = 0;
-		return productAtt;
+		productAttr.productName                     = productName;
+		productAttr.currentProductCycle             = "monthly";
+		productAttr.currentProductId                = currentProductId;
+		productAttr.discount                        = numberToReal(discount);
+		productAttr.currentProductCyclePrice        = numberToReal(currentProductCyclePrice);
+		productAttr.priceFinal                      = numberToReal(priceFinal);
+		productAttr.recurringInstallment            = 0;
+		return productAttr;
 	}
 
 
@@ -148,19 +158,15 @@ $(document).ready(function(){
 	}
 
 	//CRIATE TAG NAME  PRODUCTS
-  	function createElementTemplate(currentProductName,discount,priceFinal,recurringInstallment,price){
+  	function createElementTemplate(currentProductName,discount,priceFinal,recurringInstallment,price,cycle,currentProductId){
 		const productContainer = document.querySelector('.content-carrossel-product-plans');
 		const tagItem = document.createElement('div');
 		price = numberToReal(price);
 
-		if (recurringInstallment == 0) {
-			recurringInstallment = price;
-			hideElemente(document.querySelectorAll(".content-product-price-promotional"));
-
-		}
-
+		
 
 		tagItem.classList = 'item';
+		tagItem.setAttribute("data-name", currentProductName);
 		tagItem.innerHTML = '<div class="content-carrossel-product-header">'+
 				'<figure>'+
 				'	<img src="img/Grupo_29909.svg">'+
@@ -170,19 +176,19 @@ $(document).ready(function(){
 			'</div>'+
 			'<div class="content-carrossel-product-price">'+
 				'<div class="content-product-price-promotional">'+
-				'	<span>'+price+'</span>'+
-					'<span><strong>'+priceFinal+'</strong></span>'+
+				'	<span class="template-price"> '+price+'</span>'+
+					'<span><strong class="template-final"> '+priceFinal+'</strong></span>'+
 					'<span>equivalente a</span>'+
 				'</div>'+
 				'<div class="content-product-price">'+
 					'<span></span>'+
-					'<span>R$ <strong>'+recurringInstallment+'</strong>/mes*</span>'+
+					'<span>R$ <strong class="template-recurring">'+recurringInstallment+'</strong>/mes*</span>'+
 					'<span></span>'+
 				'</div>'+
-				'<a href="#" class="content-link-product">Contrate Agora</a>'+
+				'<a href="?a=add&pid='+currentProductId+'&billingcycle='+cycle+'&promocode=PROMOHG40" class="content-link-product">Contrate Agora</a>'+
 				'<div class="content-product-obs">'+
 					'<strong class="before-strong-info">1 ano de Domínio Grátis</strong>'+
-					'<span>economize'+discount+'<strong>40% off</strong></span>'+
+					'<span class="template-discount">economize '+discount+' <strong>40% off</strong></span>'+
 				'</div>'+
 			'</div>		'+
 			'<div class="content-carrossel-product-description">'+
@@ -198,16 +204,33 @@ $(document).ready(function(){
 		productContainer.appendChild(tagItem);
 	}
 
-	function hideElemente(hideElemente){
-		for(var i = 0; i < hideElemente.length;i++){
-			hideElemente[i].style.display = "none";
-		}
+	
 
+
+	function alterTemplate(cycle,arrayPrices,plano,currentProductId,currentProductCycle){
+
+		const element = document.querySelectorAll(".pg-home section.content-products-plans div.content-carrossel-product-plans div.item");
+		console.log(currentProductCycle);
+		for(var i = 0; i<element.length; i++){
+			if (element[i].getAttribute("data-name") == arrayPrices.productName) {
+				if (arrayPrices.recurringInstallment == 0) {
+					arrayPrices.recurringInstallment =  arrayPrices.priceFinal;
+				}
+				element[i].querySelector(".template-price").innerHTML=arrayPrices.currentProductCyclePrice;
+				element[i].querySelector(".template-final").innerHTML=arrayPrices.priceFinal;
+				element[i].querySelector(".template-recurring").innerHTML=arrayPrices.recurringInstallment;
+				element[i].querySelector(".template-discount").innerHTML='<span class="template-discount">economize '+arrayPrices.discount+'  <strong>40% off</strong></span>'
+				element[i].querySelector(".content-link-product").setAttribute("href", "?a=add&pid="+arrayPrices.currentProductId+"&billingcycle="+arrayPrices.currentProductCycle+"&promocode=PROMOHG40")
+			}
+		}
 	}
 
-	$('.pg-home section.content-products-plans div.legend-products-plans form label').click(function(e){
-	   $(".pg-home section.content-products-plans div.legend-products-plans form label").removeClass("ativo");
-	   $(this).addClass("ativo");
-	});
 
+
+
+
+
+
+	
+	
 });

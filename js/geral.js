@@ -32,33 +32,37 @@ $(document).ready(function(){
 			const currentProductCyclesSemiannually = currentProductCycle.semiannually.priceOrder
 			const currentProductCyclesTriennially  = currentProductCycle.triennially.priceOrder
 			
-			const valueTemplate = 2;
+		
 
-
-
-			// CRIATE TAG NAME
-			
-			if (valueTemplate == 1){
-				const arrayPrices = createElementTagPricePriceAnnually(currentProductCycleAnnually);
+			$(".pg-home section.content-products-plans div.legend-products-plans form label").click(function(e){
+			 	
 				
-				//createElementTagPricePriceTriennially(currentProductCyclesTriennially);
-				//createElementTagPricePriceeMonthly(currentProductCycleMonthly);
-				createElementTemplate(currentProductName,arrayPrices.discount,arrayPrices.priceFinal,arrayPrices.recurringInstallment,currentProductCycleAnnually)
-			
-			}else if(valueTemplate == 2){
+			 	const valueTemplate = $(this).attr("for");
+
+			 	if(valueTemplate == "one-years"){
+			 		
+					const arrayPrices = createElementTagPricePriceAnnually(currentProductCycleAnnually);
+					createElementTemplate(currentProductName,arrayPrices.discount,arrayPrices.priceFinal,arrayPrices.recurringInstallment,currentProductCycleAnnually)
+
+
+				}else if(valueTemplate == "three-years"){
 				
 				const arrayPricesTriennially = createElementTagPricePriceTriennially(currentProductCyclesTriennially);
 				createElementTemplate(currentProductName,arrayPricesTriennially.discount,arrayPricesTriennially.priceFinal,arrayPricesTriennially.recurringInstallment,currentProductCyclesTriennially)
 			
-			}else if(valueTemplate == 3){
-				
-				const arrayPricesMonthly = createElementTagPricePriceeMonthly(currentProductCycleMonthly);
-				createElementTemplate(currentProductName,arrayPricesMonthly.discount,arrayPricesMonthly.priceFinal,arrayPricesMonthly.recurringInstallment,currentProductCycleMonthly)
-			}
+				}else if(valueTemplate == "one-month"){
+					
+					const arrayPricesMonthly = createElementTagPricePriceeMonthly(currentProductCycleMonthly);
+					createElementTemplate(currentProductName,arrayPricesMonthly.discount,arrayPricesMonthly.priceFinal,arrayPricesMonthly.recurringInstallment,currentProductCycleMonthly)
+				}
+			});
+
 		})
 
 
-		setTimeout(function(){
+		
+			$( ".pg-home section.content-products-plans div.legend-products-plans form label[for='three-years']" ).trigger( "click" );
+			
 			$('.content-carrossel-product-plans').slick({
 			    slidesToShow: 3,
 			    slidesToScroll: 1,
@@ -86,8 +90,7 @@ $(document).ready(function(){
 			        },
 			    ]
 			  });
-			});
-		});
+	});
 
 
 
@@ -149,10 +152,11 @@ $(document).ready(function(){
 		const productContainer = document.querySelector('.content-carrossel-product-plans');
 		const tagItem = document.createElement('div');
 		price = numberToReal(price);
-		console.log(recurringInstallment)
+
 		if (recurringInstallment == 0) {
-			hideElemente(document.querySelectorAll(".content-product-price-promotional"));
 			recurringInstallment = price;
+			hideElemente(document.querySelectorAll(".content-product-price-promotional"));
+
 		}
 
 
